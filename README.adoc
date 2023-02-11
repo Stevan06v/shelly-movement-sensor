@@ -13,7 +13,7 @@ Stevan Vlajic
 == ABOUT
 
 === MOVEMENT-SENSOR
-I've created a movement sensor on my own with:
+I've created a movement sensor with:
 
 * Rapberry Pico W 
 * PIR-Motion Sensor
@@ -37,3 +37,6 @@ First of all you need to get:
 Now you need to connect the PIR-MOTION-SENSOR with the RASPBERRY PI PICO W. To do that you will need to follow the instructions in the picture:
 
 image::./img/pinout.png[500,500]
+
+
+== Not ready yet...

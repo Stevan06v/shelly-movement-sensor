@@ -21,7 +21,6 @@ def devicesStatusJson(status, devices):
         print(data)
         print("-------------------------")
         
-
         return data
     except:
         print("error occured while creating status string...")

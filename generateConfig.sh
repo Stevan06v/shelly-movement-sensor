@@ -32,9 +32,7 @@ echo "---------------------------------"
 echo "Type in the port of your server: "
 read port
 
-
 clear
-
 
 function wirteConfigFile {
     json='{"device": "'"$device"'","ssid": "'"$ssid"'","psk": "'"$psk"'","server": "'"$ipaddr"'","port":"'"$port"'","devices":['
@@ -89,8 +87,6 @@ function wirteConfigFile {
     
     cat "./config/config.json"
 }
-
-
 
 DIR="/config/"
 
