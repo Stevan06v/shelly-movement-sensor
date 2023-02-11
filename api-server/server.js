@@ -1,8 +1,6 @@
 const express = require('express');
 const app = express();
 const port = 3034;
-
-
 const axios = require('axios');
 const { log } = require('console');
 
@@ -23,7 +21,6 @@ async function toggleRelay(val,ip) {
     }
 }
 
-
 async function toggleRGB(val,ip) {
     let switcher = val == 0 ? "off" : "on";
 
@@ -36,7 +33,6 @@ async function toggleRGB(val,ip) {
         console.error(error);
     }
 }
-
 
 app.get('/getMovement', (req, res) => {
     const data = JSON.parse(req.query.value)
@@ -59,8 +55,6 @@ app.get('/getMovement', (req, res) => {
     }    
     res.send("deteced")
 })
-
-
 
 
 app.listen(port, (err) => {
