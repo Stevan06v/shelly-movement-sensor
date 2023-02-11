@@ -1,15 +1,21 @@
 const express = require('express');
 const app = express();
-const port = 3000;
+const port = 3034;
 
 
 const axios = require('axios');
 const { log } = require('console');
 
-async function turnOffRelay() {
+
+async function toggleRelay(val,ip) {
+
+    let switcher = val == 0 ? "off" : "on";
+
+    console.log(switcher);
+
     try {
-        const response = await axios.post('http://192.168.0.12/relay/0/?turn=off', {
-            turn: "off"
+        const response = await axios.post(`http://${ip}/relay/0/?turn=${switcher}`, {
+            turn: switcher
         });
         console.log(response.data);
     } catch (error) {
@@ -17,33 +23,13 @@ async function turnOffRelay() {
     }
 }
 
-async function turnOnRelay() {
-    try {
-        const response = await axios.post('http://192.168.0.12/relay/0/?turn=on', {
-            turn: "on"
-        });
-        console.log(response.data);
-    } catch (error) {
-        console.error(error);
-    }
-}
 
+async function toggleRGB(val,ip) {
+    let switcher = val == 0 ? "off" : "on";
 
-async function turnOffRGBLights() {
     try {
-        const response = await axios.post('http://192.168.0.13/color/0?turn=off', {
-            turn: "off"
-        });
-        console.log(response.data);
-    } catch (error) {
-        console.error(error);
-    }
-}
-
-async function turnOnRGBLights() {
-    try {
-        const response = await axios.post('http://192.168.0.13/color/0?turn=on', {
-            turn: "on"
+        const response = await axios.post(`http://${ip}/color/0?turn=${switcher}`, {
+            turn: switcher
         });
         console.log(response.data);
     } catch (error) {
@@ -53,23 +39,31 @@ async function turnOnRGBLights() {
 
 
 app.get('/getMovement', (req, res) => {
-    const value = req.query.value
-    if(value == 1){
-        turnOnRGBLights()
-        turnOnRelay()
-        res.send("deteced")
-    }else{
-        turnOffRGBLights()
-        turnOffRelay()
-        res.send("not detected")
-    }
+    const data = JSON.parse(req.query.value)
 
-    console.log(value)
+    let status = data.status
+    let devices = data.devices
+    console.log(status);
+    console.log(devices);
+
+
+    for (let i = 0; i < devices.length; i++) {
+        switch (devices[i].type) {
+            case "relay":
+                toggleRelay(status,devices[i].ip)
+                break;
+            case "rgb":
+                toggleRGB(status,devices[i].ip)
+                break;
+        }
+    }    
+    res.send("deteced")
 })
 
 
 
-app.listen(port, function (err) {
+
+app.listen(port, (err) => {
     if (err) {
         console.log(err);
     } else {

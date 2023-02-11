@@ -1,5 +1,17 @@
 {
     "device": "Raspberry Pi Pico W",
-    "ssid": "LiwestC959-5G",
-    "psk": "FTCghagnCTeT"
+    "ssid": "LiwestC959",
+    "psk": "FTCghagnCTeT",
+    "server": "192.168.0.224",
+    "port":"3034",
+    "devices":[
+        {
+            "type":"relay",
+            "ip":"192.168.0.12"
+        },
+        {
+            "type":"rgb",
+            "ip":"192.168.0.13"
+        }
+    ]
 }
