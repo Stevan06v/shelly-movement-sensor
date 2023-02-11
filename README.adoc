@@ -9,6 +9,14 @@ Stevan Vlajic
 :experimental:
 
 
+== PROJECT-OVERVIEW 
+=== SINGLE-SENSOR-OVERVIEW
+image:./img/overview_single.png[500,500]
+
+=== HOUSE-OVERVIEW
+image:./img/overview_house.png[500,500]
+
+
 
 == ABOUT
 
