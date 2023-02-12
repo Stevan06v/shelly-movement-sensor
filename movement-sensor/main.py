@@ -83,7 +83,6 @@ print("Successfully connected to " + ssid + "!")
 def sendStatus(value):
     try:
         print(server + ":" + port)
-    
         url = 'http://' + server + ':'+ port +'/getMovement?value=' + str(json.dumps(devicesStatusJson(value, devices)))
         print(url)
         response = urequests.get(url)

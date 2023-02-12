@@ -37,7 +37,7 @@ clear
 function wirteConfigFile {
     json='{"device": "'"$device"'","ssid": "'"$ssid"'","psk": "'"$psk"'","server": "'"$ipaddr"'","port":"'"$port"'","devices":['
 
-    echo $json > "./config/config.json"
+    echo $json > "../config/config.json"
 
     echo "How much devices do you want to manage (1-...):"
     read devices
@@ -53,15 +53,9 @@ function wirteConfigFile {
     read -p "Enter your selection: " selection
 
     if [ $selection -eq 1 ]; then
-
         devicetype="relay"
-        echo $devicetype
-
     elif [ $selection -eq 2 ]; then
-
         devicetype="rgb" 
-        echo $devicetype
-
     fi
 
     echo "---------------------------------"
@@ -70,9 +64,9 @@ function wirteConfigFile {
     read deviceip
 
     if [ $count -lt $devices ];then
-        echo '{"type": "'"$devicetype"'","ip": "'"$deviceip"'"},' >> "./config/config.json"
+        echo '{"type": "'"$devicetype"'","ip": "'"$deviceip"'"},' >> "../config/config.json"
     else
-        echo '{"type": "'"$devicetype"'","ip": "'"$deviceip"'"}' >> "./config/config.json"
+        echo '{"type": "'"$devicetype"'","ip": "'"$deviceip"'"}' >> "../config/config.json"
     fi
 
     clear
@@ -80,19 +74,19 @@ function wirteConfigFile {
     count=$((count + 1))
     done
 
-    echo "]}" >> "./config/config.json"
+    echo "]}" >> "../config/config.json"
 
 
     echo "JSON-CONFIGURATION SUCCESSFULLY CREATED!"
     
-    cat "./config/config.json"
+    cat "../config/config.json"
 }
 
-DIR="/config/"
+DIR="../config/"
 
 function createConfigFile {
     touch config.json
-    mv config.json config
+    mv config.json ../config/
 }
 
 if [ -d "$DIR" ]; then
@@ -101,6 +95,7 @@ if [ -d "$DIR" ]; then
     wirteConfigFile
 else
     mkdir config
+    mv config ../
     createConfigFile
     wirteConfigFile 
 fi
