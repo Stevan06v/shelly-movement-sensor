@@ -10,7 +10,6 @@ server =""
 port =""
 devices = []
 
-
 def devicesStatusJson(status, devices):
     try:
         data ={
@@ -19,13 +18,11 @@ def devicesStatusJson(status, devices):
         }
         print("-------------------------")
         print(data)
-        print("-------------------------")
-        
+        print("-------------------------") 
         return data
     except:
         print("error occured while creating status string...")
     
-
 
 def initDevices():
     try:
